@@ -1,0 +1,84 @@
+{
+  "train": {
+    "min_training_frames": 300,
+    "batch_size": 4,
+    "learning_rate": 0.0002,
+    "epochs": 1000,
+
+    "segment_size": 8192,
+    "betas": [0.8, 0.99],
+    "eps": 1e-9,
+
+    "log_interval": 100,
+    "eval_interval": 2000,
+    "save_every_steps": 500,
+    "lr_decay": 0.999875,
+    "fp16_run": true,
+    "seed": 42
+  },
+
+  "data": {
+    "training_files": "tamil_vits_dataset/metadata_clea.csv",
+    "validation_files": "tamil_vits_dataset/metadata_vali.csv",
+
+    "filter_length": 1024,
+    "hop_length": 256,
+    "win_length": 1024,
+
+    "n_mel_channels": 80,
+    "sampling_rate": 22050,
+    "num_workers": 4,
+    "mel_fmin": 0.0,
+    "mel_fmax": null,
+
+    "text_cleaners": ["tamil_cleaner"],
+    "n_symbols": 282,
+    "cleaned_text": true,
+    "max_wav_value": 32768.0,
+    "add_blank": true,
+
+    "min_text_len": 1,
+    "max_text_len": 500,
+
+    "n_speakers": 2
+  },
+
+  "model": {
+    "n_vocab": 282,
+
+    "spec_channels": 513,
+    "segment_size": 32,
+
+    "inter_channels": 192,
+    "hidden_channels": 192,
+    "filter_channels": 768,
+
+    "n_heads": 2,
+    "n_layers": 6,
+    "kernel_size": 3,
+    "p_dropout": 0.1,
+
+    "resblock": "1",
+    "resblock_kernel_sizes": [3, 7, 11],
+    "resblock_dilation_sizes": [
+      [1, 3, 5],
+      [1, 3, 5],
+      [1, 3, 5]
+    ],
+
+    "upsample_rates": [8, 8, 2, 2],
+    "upsample_initial_channel": 512,
+    "upsample_kernel_sizes": [16, 16, 4, 4],
+
+    "n_speakers": 2,
+    "gin_channels": 128,
+
+    "use_spectral_norm": false,
+    "use_sdp": false,
+
+    "max_seq_len": 2000,
+    "bucket_size": [64, 128, 256, 512]
+  },
+
+  "model_dir": "./logs/tvr"
+}
